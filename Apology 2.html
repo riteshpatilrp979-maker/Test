@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>साक्षी - एक छोटीशी माफी</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#ffeef7;
+      --bg2:#fff2fb;
+      --accent:#ff6fa3;
+      --muted:#6b6b6b;
+      --card:#ffffffcc;
+      --section1:#fff4fa;
+      --section2:#fff7fb;
+      --section3:#fff1f6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100vh;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;padding:32px;
+    }
+    .scene{width:100%;max-width:940px;border-radius:20px;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.5));box-shadow:0 10px 30px rgba(255,105,180,0.12);position:relative;overflow:hidden}
+    .hearts{position:absolute;inset:0;pointer-events:none;}
+    .heart{position:absolute;opacity:.15;font-size:60px; transform:translateY(0) rotate(0deg); animation:float 8s linear infinite}
+    @keyframes float{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(10deg)}100%{transform:translateY(0) rotate(0deg)}}
+    header{display:flex;gap:18px;align-items:center}
+    .avatar{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#fff,#ffeaf2);display:flex;align-items:center;justify-content:center;font-family:Dancing Script, cursive;font-size:28px;color:var(--accent);box-shadow:0 6px 18px rgba(255,105,180,0.12)}
+    h1{font-family:Dancing Script, cursive;font-size:34px;margin:0;color:#8b1457}
+    p.lead{margin:12px 0 18px;color:var(--muted);line-height:1.5}
+
+    .card{background:var(--card);padding:20px;border-radius:14px;box-shadow:0 6px 18px rgba(160,70,120,0.06);margin-top:16px}
+
+    .section{margin:16px 0;padding:20px;border-radius:16px;box-shadow:0 8px 20px rgba(255,130,170,0.15);border:1px solid rgba(255,130,170,0.15);transition:transform 0.2s, box-shadow 0.3s ease-in-out;}
+    .section:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(255,130,170,0.25)}
+    .section1{background:var(--section1)}
+    .section2{background:var(--section2)}
+    .section3{background:var(--section3)}
+
+    pre.marathi{white-space:pre-wrap;font-size:16px;line-height:1.7;color:#4a2b3a;margin:0}
+
+    .btns{display:flex;gap:12px;margin-top:16px}
+    .btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:600;font-size:15px}
+    .btn.sorry{background:linear-gradient(90deg,#ffd3e8,#ffb3d6);color:#7a1640}
+    .btn.angry{background:transparent;border:2px solid rgba(120,20,70,0.08);color:#7a1640}
+
+    .response{margin-top:14px;padding:12px;border-radius:10px;background:rgba(255,245,250,0.7);color:#5a1d3a;display:none}
+
+    label.inputLabel{display:block;margin-top:20px;color:#6b2b44;font-weight:600}
+    input.textInput{width:100%;padding:12px;border-radius:10px;border:1px solid #ffdce7;margin-top:8px;font-size:16px}
+
+    .modalBack{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center}
+    .modal{background:white;border-radius:14px;padding:20px;max-width:520px;width:92%;box-shadow:0 24px 80px rgba(107,10,60,0.18)}
+    .modal h3{font-family:Dancing Script,cursive;margin:0 0 8px;font-size:26px;color:#a61b56}
+    .modal .line{min-height:48px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#4b2031}
+    .modal .next{margin-top:12px;padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,#ffd3e8,#ffb3d6);cursor:pointer;font-weight:700}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+    @media(min-width:720px){.scene{padding:36px}}
+  </style>
+</head>
+<body>
+  <div class="scene" role="main">
+    <div class="hearts" aria-hidden="true">
+      <div class="heart" style="left:6%;top:10%">💗</div>
+      <div class="heart" style="left:82%;top:8%;font-size:48px;opacity:.12">💕</div>
+      <div class="heart" style="left:52%;top:30%;font-size:72px;opacity:.08">🌸</div>
+      <div class="heart" style="left:22%;top:60%;font-size:56px;opacity:.06">💖</div>
+    </div>
+
+    <header>
+      <div class="avatar">S</div>
+      <div>
+        <h1>साक्षी 💛</h1>
+        <p class="lead">काही शब्द, एक छोटा प्रयत्न — फक्त तुझ्यासाठी.</p>
+      </div>
+    </header>
+
+    <div class="card" id="mainCard">
+
+      <div class="section section1">
+        <pre class="marathi">Sakshi.
+मला माहित आहे sorry ने गोष्टी fix नाही होत. मला नेहमी तुला hurt करायचं intention नसतं आणि तसं होऊन बसतं. 
+असं बिलकुल नाहीये की मी तुझी respect करत नाही. I really value your presence in my life.
+मी गोष्टी better understand करेल ani सुधारेल साक्षी.
+दर वेळेस तुझ्या बद्दल मला नवीन काही माहीत पडत असतं.</pre>
+      </div>
+
+      <div class="section section2">
+        <pre class="marathi">तुच बोलते ना, रितेश, आपण जितके similar आहोत तितकेच वेगळे पण. जीवन बाबतीत आपले perspectives खूप जास्त वेगळे आहेत. पण मला एक माहिती आणि तू पण बघितलं आहे, आपण एक मेकांना आपले perspectives समझावतो आणि मधला मार्ग काढून एकदम मस्त राहतो. पण हा मधील मार्ग काढण्यामध्ये तुला खूप त्रास होतो.
+साक्षी, बच्चा, माझ्या मनात नसतात ग गोष्टी, माहीत नसत. मुद्दाम तर नाही करत मी माहिती तुला पण. पण हे खरं आहे, जो त्रास तुला होतो तो खरा आहे.</pre>
+      </div>
+
+      <div class="section section3">
+        <pre class="marathi">मला please समजावून देत जा. तुला काय आवडतं, कस आवडतं. काय हवं असतं. बाकी सगळ जे काही तुला मनाला लागलेलं असतं ते सांगून देत जा please.
+
+मी खूप वेळा request केलेली आहे साक्ष्या तुला. Fights मधे किंवा अशा गोष्टींमध्ये relation ला मध्ये नको घेत जाऊस यार. जे काही असतं तू बोलून देत जा. हो मी ऐकून घेत नाही, मी ऐकत जाईल. 
+पण साक्षी, ह्याने कधी तू खुप जास्त नफरत करायला लागणार माझ्यासोबत तुला पण नाही कळणार ग.
+Fights मध्ये, जे काही प्रॉब्लेम आहे, त्यावर, काय झालं आहे त्यावर, रागावून घेत जा. काहीपण करत जा. पण आपल्या नातं खोट आहे, किंवा त्याला disrespect होइल असं काही नको करत जाऊस please.❤️</pre>
+      </div>
+
+      <div class="btns">
+        <button class="btn sorry" id="acceptBtn">💌 sorry accepted</button>
+        <button class="btn angry" id="angryBtn">😔 still angry</button>
+      </div>
+
+      <div id="resp" class="response" role="status" aria-live="polite"></div>
+
+      <label class="inputLabel" for="jaanu">Who is your Jaanu</label>
+      <input class="textInput" id="jaanu" placeholder="(type a name and press Enter)" />
+
+    </div>
+
+    <footer>Made with care — just for you. 🌷</footer>
+  </div>
+
+  <div class="modalBack" id="modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">माझ्या साक्षी साठी🫣</h3>
+      <div class="line" id="modalLine"> </div>
+      <button class="next" id="modalNext">अजून ऐकायचं ?</button>
+    </div>
+  </div>
+
+  <script>
+    const acceptBtn = document.getElementById('acceptBtn');
+    const angryBtn = document.getElementById('angryBtn');
+    const resp = document.getElementById('resp');
+    const jaanu = document.getElementById('jaanu');
+
+    acceptBtn.addEventListener('click', ()=>{
+      resp.style.display='block';
+      resp.textContent = 'Thank you Sakya. I will improve and we will definetly have a deep talk on this. Please be with me, we will solve everything. 💛';
+      resp.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+
+    angryBtn.addEventListener('click', ()=>{
+      resp.style.display='block';
+      resp.innerHTML = 'मला माहित आहे ग तुला त्रास होतो मी hurt केल्यावर. आहेस ना तू समजदार माझ्यासाठी. आहे ना मी ऐकणारा तुझ्यासाठी. <br><br>Sorry na bachha.. 🙏';
+      resp.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+
+    const sequence = [
+      'कोकिळेचा आवाज, वाटतो खूपच गोड साक्षी ला जपतो मी, जसा तळहाताचा फोड.',
+      'पार्ले ची बिस्कीटे बेडेकरंचा मसाला , साक्षी नाव घ्यायला आग्रह कशाला.',
+      'प्रेम म्हणजे दोन मनांना जोडणारा पूल , साक्षी च्या बोलक्या डोळ्यांनी घातली मला भूल.'
+    ];
+    const finalText = 'बस इतकेच, बाकी group वर बोलू की. नुसतं लागायला पाहिजे boyfriend च्या नावाने😗';
+
+    const modal = document.getElementById('modal');
+    const modalLine = document.getElementById('modalLine');
+    const modalNext = document.getElementById('modalNext');
+    let idx = 0;
+
+    function openModal(){
+      idx = 0;
+      modal.style.display='flex';
+      modalLine.textContent = 'मुद्दाम नाही करत, नकळत हे घडतं, माझं मन रोज नव्याने, साक्षी च्याच प्रेमात पडतं.';
+      modalNext.textContent = 'अजून ऐकायचं ?';
+      modalNext.disabled = false;
+    }
+
+    modalNext.addEventListener('click', ()=>{
+      if(idx < sequence.length){
+        modalLine.textContent = sequence[idx];
+        idx++;
+        if(idx === sequence.length){
+          modalNext.textContent = 'समाप्त करायचं';
+        }
+      } else {
+        modalLine.textContent = finalText;
+        modalNext.textContent = 'Close';
+        modalNext.disabled = false;
+        modalNext.onclick = ()=>{ modal.style.display='none'; modalNext.onclick = null; };
+      }
+    });
+
+    modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none'; });
+
+    jaanu.addEventListener('keydown',(e)=>{
+      if(e.key === 'Enter'){
+        const val = jaanu.value.trim().toLowerCase();
+        if(val === 'ritesh' || val === 'ritya' || val === 'riteria' || val === 'ritey'){
+          openModal();
+        } else {
+          jaanu.animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:260});
+        }
+      }
+    });
+
+    jaanu.addEventListener('focus', ()=>{ jaanu.placeholder='type and press Enter' });
+  </script>
+</body>
+</html>
